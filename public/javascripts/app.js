@@ -16,35 +16,62 @@ function createPostHTML(post) {
   '" class="groupList interviewed-' + post.interviewed
   + ' list-group-item"><p>Company: <strong>' + post.company
   + ' </strong></p><br> ' + post.content + '<br><button type="button" class="link" data-toggle="modal" data-target="#showModal"> View for more info</button><span class="remove-post" style="float:right;">Delete</span></li>'
-  );
-}
+)};
 
-//function to dynamically create a modal representing the show page for each post
-function createModalHTML(post){
-  '<div class="modal fade" id="showModal post-' + post._id +
-  '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">' +
+function createModalHTML(post) {
+  return $('<div class="modal fade" id="showModal post-' + post.id +'" tabindex="-1" role="dialog"' + 'aria-labelledby="myModalLabel" aria-hidden="fals">' +
   '<div class="modal-dialog" role="document">' +
-      '<div class="modal-content">' +
-        '<div class="modal-header">' +
-          '<button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
-            '<span aria-hidden="true">&times;</span>' +
-          '</button>' +
-          '<h4 class="modal-title" id="myModalLabel">User Name</h4>' +
-        '</div>' +
-        '<div class="modal-body">' +
-        '<h5 class="modal-title" id="myModalLabel">' + post.interviewed + '</h5>' +
-        '<h5 class="modal-title" id="myModalLabel">' + post.company + '</h5>' +
-        '<h5 class="modal-title" id="myModalLabel">' + post.content + '</h5>' +
-        '<h5 class="modal-title" id="myModalLabel">User Name</h5>' +
-        '</div>' +
-        '<div class="modal-footer">' +
-          '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>' +
-          '<button type="button" class="btn btn-primary">Save changes</button>' +
-        '</div>' +
+    '<div class="modal-content">' +
+      '<div class="modal-header">' +
+        '<button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+          '<span aria-hidden="true">&times;</span>' +
+        '</button>' +
+        '<h4 class="modal-title" id="myModalLabel">' + user.linkedin.firstName + ' ' + user.linkedin.lastName + '</h4>' +
+      '</div>' +
+      '<div class="modal-body" id="showPost">' +
+        '<b>Company:</b>' +  post.company + '<br><br>' +
+        '<b>Interview Details:</b>' + post.content + '<br><br>' +
+
+        '<b>Bonus Tips:</b>' + post.bonus_tips + '<br><br>' +
+        '<b>Experience:</b>' + post.positive_exp + '<br><br><!--this might not work-->' +
+        '<b>Replies:</b>' + post.replies + '<br><br>' +
+      '</div>' +
+      '</div>' +
+      '<div class="modal-footer">' +
+        '<button type="button" class="btn btn-secondary" data-dismiss="modal"><a' +
+        'href="/dashboard">Back</a></button>' +
       '</div>' +
     '</div>' +
-  '</div>'
-}
+  '</div>' +
+'</div>'
+  )};
+
+//function to dynamically create a modal representing the show page for each post
+// function createModalHTML(post){
+//   '<div class="modal fade" id="showModal post-' + post._id +
+//   '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">' +
+//   '<div class="modal-dialog" role="document">' +
+//       '<div class="modal-content">' +
+//         '<div class="modal-header">' +
+//           '<button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+//             '<span aria-hidden="true">&times;</span>' +
+//           '</button>' +
+//           '<h4 class="modal-title" id="myModalLabel">User Name</h4>' +
+//         '</div>' +
+//         '<div class="modal-body">' +
+//         '<h5 class="modal-title" id="myModalLabel">' + post.interviewed + '</h5>' +
+//         '<h5 class="modal-title" id="myModalLabel">' + post.company + '</h5>' +
+//         '<h5 class="modal-title" id="myModalLabel">' + post.content + '</h5>' +
+//         '<h5 class="modal-title" id="myModalLabel">User Name</h5>' +
+//         '</div>' +
+//         '<div class="modal-footer">' +
+//           '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>' +
+//           '<button type="button" class="btn btn-primary">Save changes</button>' +
+//         '</div>' +
+//       '</div>' +
+//     '</div>' +
+//   '</div>'
+// }
 
 /////////////////////////////////////////////////
 //////////////GET BY ID AND DELETE///////////////
@@ -192,8 +219,22 @@ $(document).ready(function() {
     // make modal go away on submit
     $('#myModal').modal('toggle');
     return false;
-
   })
+
+  //open show modal
+  $('#showModal').on('submit', function(ev) {
+    $('#my-modal').createModalHTML();
+
+
+    var data = $(this).serializeObject();
+    json_data = JSON.stringify(data);
+    $("#results").text(json_data);
+    $(".modal-body").text(json_data);
+
+    // $("#results").text(data);
+
+    ev.preventDefault();
+});
 
 
   // $.ajax({

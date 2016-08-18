@@ -7,6 +7,10 @@ module.exports = {
   destroy: destroy
 }
 
+///////////////////////////////////////////
+//////////////INDEX FUNCTION///////////////
+///////////////////////////////////////////
+
 // return all posts from the db as json
 // middleware takes in a req and a res and needs a next to tell the app when to pass along to the next middleware in the chain
 function index(req, res, next) {
@@ -21,6 +25,10 @@ function index(req, res, next) {
   });
 };
 
+////////////////////////////////////////////
+//////////////CREATE FUNCTION///////////////
+////////////////////////////////////////////
+
 function create(req, res, next) {
   console.log('user, Bobble', req.user);
 
@@ -30,7 +38,7 @@ function create(req, res, next) {
   newPost.interviewed  = req.body.interviewed;
   newPost.positive_exp = req.body.positive_exp;
   newPost.bonus_tips   = req.body.bonus_tips;
-  
+
 
   newPost.save(function(err, savedPost) {
     if (err) next(err);
@@ -38,6 +46,23 @@ function create(req, res, next) {
     res.json(savedPost);
   });
 }
+
+//////////////////////////////////////////
+//////////////SHOW FUNCTION///////////////
+//////////////////////////////////////////
+
+    function show(req, res, next) {
+    Post.findById(req.params.id, function(err, post) {
+      if (err) {
+        throw err;
+      }
+      res.render('/dashboard', {user: req.user, post: post});
+      //add grab the modal here
+    });
+
+
+  };
+
 
 // function update(req, res, next) {
 //   var id = req.params.id;
@@ -66,6 +91,11 @@ function create(req, res, next) {
 //   })
 // }
 //
+
+/////////////////////////////////////////////
+//////////////DESTROY FUNCTION///////////////
+/////////////////////////////////////////////
+
 function destroy(req, res, next) {
   var id = req.params.id;
   console.log('Say toodaloo, post, Bootsy!!', id);
