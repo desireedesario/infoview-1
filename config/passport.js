@@ -42,6 +42,7 @@ function(accessToken, refreshToken, profile, cb) {
         console.log('found user' + user);
         return cb(null, user);
       } else {
+
         console.log('creating user');
         // if no user is found with that linkedin id, create them by setting fields from the returned profile attributes
         var newUser = new User({
@@ -57,13 +58,11 @@ function(accessToken, refreshToken, profile, cb) {
             pictureUrl  : profile._json.pictureUrl
           }
         });
-
         // save user to our db
         newUser.save(function(err) {
           // what to do if there is an error
           if(err) return cb(err);
           // if successful, return the new user
-          console.log(newUser);
           return cb(null, newUser);
         });
       }

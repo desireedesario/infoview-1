@@ -39,7 +39,6 @@ function create(req, res, next) {
   newPost.positive_exp = req.body.positive_exp;
   newPost.bonus_tips   = req.body.bonus_tips;
 
-
   newPost.save(function(err, savedPost) {
     if (err) next(err);
 

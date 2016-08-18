@@ -2,16 +2,7 @@ require('dotenv').config();
 
 var mongoose = require('./database');
 var User     = require( '../models/user' );
-var Post     = require('../models/post')
-
-
-// create a new user called chris
-// var users = new User( {
-//   firstName: 'Bob',
-//   email: 'bob@ga.co',
-//   industry: 'web development',
-//   id: 2
-// });
+var Post     = require('../models/post');
 
 var posts = [
   {

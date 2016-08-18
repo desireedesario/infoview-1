@@ -32,6 +32,9 @@
       <ul class='nav navbar-nav navbar-right'>
         <% if (user) { %>
           <li>
+          <a href='#'>Hello, <%= user.linkedin.firstName %>!</a>
+          </li>
+          <li>
             <a href='/logout'>Logout</a>
           </li>
         <% } else { %>
