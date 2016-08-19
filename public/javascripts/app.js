@@ -23,7 +23,7 @@ function createPostHTML(post) {
 
 // create an HTML version of a reply
 function createReplyHTML(reply) {
-  return $('<div class="reply-user"><h5>Reply from ' + reply.postedBy.linkedin.firstName + '</h5><img src="' + reply.postedBy.linkedin.pictureUrl + '" width="10%"></div><p>' + reply.text + '</p>')
+  return $('<div class="media"><div class="media-left reply-user"><img class="media-object" src="' + reply.postedBy.linkedin.pictureUrl + '"></div><div class="media-body"><h4 class="media-heading"> Reply from: ' + reply.postedBy.linkedin.firstName + '</h4><p>' + reply.text + '</p></div></div>')
 }
 
 // go through a post's replies and append them all under the post
@@ -67,7 +67,7 @@ function showPost(post){
           '<div>Interviewed or Upcoming Interview : ' + jsonPost.interviewed + '</div>' +
           '<div>(if interviewed) How was your experience? : ' + jsonPost.positive_exp + '</div>' +
           '<div>Interview details: ' + jsonPost.content + '</div>' +
-          '<div>Bonus Tips: ' + jsonPost.bonus_tips + '</div><hr><div id="post-replies"><h6>Replies</h6></div>'
+          '<div>Bonus Tips: ' + jsonPost.bonus_tips + '</div><hr><div id="post-replies"></div>'
         );
         // list all the replies for this post
         listReplies(jsonPost);

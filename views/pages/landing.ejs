@@ -120,7 +120,7 @@
                     * {
                       margin: 3%;
                     }
-                    form input {
+                    .form-input {
                       background: #fcfcfc;
                       padding: 10px;
                       margin-top: 2%;
@@ -129,7 +129,6 @@
                       box-sizing: border-box;
                     }
                     form button {
-                      /*width: 50%;*/
                       border: none;
                       margin: 10px;
                     }
@@ -155,11 +154,11 @@
                     </style>
                     <div id='chatbox' class='pre-scrollable' style="display:inline-block;float:left;">
 
-                        <input id='name' placeholder='Your name'>
+                        <input class="form-input" id='name' placeholder='Your name'>
                         <button id='submit-name'>Enter Name</button>
 
                         <form action=''>
-                          <input autocomplete='off' id='msg' placeholder='Chat with others online'/><button>Send</button>
+                          <input class="form-input" autocomplete='off' id='msg' placeholder='Chat with others online'/><button>Send</button>
                           <ul id='messages'></ul>
                         </form>
                       </div>

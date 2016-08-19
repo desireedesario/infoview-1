@@ -23,9 +23,20 @@
     <!-- modal footer -->
     <div class='modal-footer'>
 
-      <% include ../partials/reply_form %>
+      <form class='new-reply'>
+
+        <!-- reply content field -->
+        <div class='form-group'>
+          <%# <label for='exampleTextarea'>Interview details:</label>%>
+          <textarea class='form-control' id='reply-content' rows='5' placeHolder='Reply to this post.'></textarea>
+        </div>
+
+        <!-- submit button -->
+        <input type='hidden' id='reply-user' name='user' value='<%if(user){%><%=user._id%><%}%>'>
+        <button type='submit' class='btn btn-primary' id='submit-reply'>Post Reply</button>
 
       <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
+    </form>
 
     </div>
   </div>
