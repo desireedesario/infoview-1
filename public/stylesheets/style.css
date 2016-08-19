@@ -1702,6 +1702,7 @@ input[type=checkbox] {
 
 		a:hover {
 			border-bottom-color: transparent;
+      text-decoration: none;  
 		}
 
 	strong, b {
